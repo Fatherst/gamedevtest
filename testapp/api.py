@@ -12,10 +12,10 @@ testapp_router = Router()
 @testapp_router.get("/csv_players")
 def export_players(request):
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition']='attachment; filename="players.csv"'
+    response['Content-Disposition'] = 'attachment; filename="players.csv"'
 
-    writer=csv.writer(response)
-    writer.writerow(['Player ID','Level','Completed', 'Prize'])
+    writer = csv.writer(response)
+    writer.writerow(['Player ID', 'Level', 'Completed', 'Prize'])
     players = Player.objects.all()
     for player in players:
         player_levels = PlayerLevel.objects.filter(player=player)
@@ -30,6 +30,7 @@ def export_players(request):
                 prize_titles
             ])
     return response
+
 
 @testapp_router.post("/assign_boost")
 def boost_assignment(request, data: CompletedLevelSchema):

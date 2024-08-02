@@ -1,4 +1,5 @@
 from django.utils import timezone
+
 from django.db import models
 
 
@@ -50,7 +51,7 @@ class PlayerLevel(models.Model):
         for level_prize in level_prizes:
             self.player.prizes.add(level_prize.prize)
 
+
 class PlayerBoost(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     boost = models.ForeignKey(Boost, on_delete=models.CASCADE)
-
